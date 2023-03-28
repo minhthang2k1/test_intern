@@ -1,0 +1,144 @@
+.cart {
+  background-color: var(--White);
+  box-sizing: border-box;
+  width: 360px;
+  height: 600px;
+  box-shadow: 0 3.2px 2.2px rgba(0, 0, 0, 0.02),
+    0 7px 5.4px rgba(0, 0, 0, 0.028), 0 12.1px 10.1px rgba(0, 0, 0, 0.035),
+    0 19.8px 18.1px rgba(0, 0, 0, 0.042), 0 34.7px 33.8px rgba(0, 0, 0, 0.05),
+    0 81px 81px rgba(0, 0, 0, 0.07);
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 0 28px;
+  position: relative;
+  margin-bottom: 20px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 100%;
+    background-color: var(--Yellow);
+    top: -20%;
+    left: -50%;
+    z-index: 0;
+  }
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 16px 0;
+  position: relative;
+
+  .price {
+    float: right;
+  }
+}
+
+.body {
+  height: calc(100% - 98px);
+  position: relative;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.item {
+  display: flex;
+  padding: 20px 0;
+}
+
+.item-image {
+  flex: 0;
+
+  .image {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    background-color: #eee;
+    margin-right: 34px;
+
+    img {
+      display: block;
+      width: 140%;
+      transform: rotate(-28deg) translateY(-40px);
+      filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.2));
+    }
+  }
+}
+
+.item-description {
+  flex: 1;
+
+  .item-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .item-price {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.item-count {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  .number-count {
+    font-size: 14px;
+    margin: 0 8px;
+    width: 20px;
+    text-align: center;
+  }
+
+  .btn-count {
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 100%;
+    background-color: #eee;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+    user-select: none;
+  }
+}
+
+.btn-remove {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Yellow);
+  transition: 0.2s;
+  user-select: none;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
