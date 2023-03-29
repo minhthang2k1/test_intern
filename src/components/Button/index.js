@@ -7,9 +7,8 @@ import styles from "./Button.module.scss";
 const cx = classNames.bind(styles);
 
 const Button = ({ onClick, cartItems }) => {
-  console.log(cartItems?.quantity);
   const [isChecked, setIsChecked] = useState(false);
-  console.log(cartItems);
+
   const handleButtonClick = () => {
     setIsChecked(true);
     onClick();

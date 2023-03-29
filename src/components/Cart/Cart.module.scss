@@ -165,3 +165,9 @@
     transform: scale(0.5);
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .cart {
+    width: 90%;
+  }
+}

@@ -1,5 +1,7 @@
 import classNames from "classnames/bind";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./Cart.module.scss";
 import Logo from "../Logo";
@@ -56,7 +58,9 @@ const Cart = ({ cartItems, removeFromCart, reduceFromCart, addToCart }) => {
                   </div>
                   <div
                     className={cx("btn-remove")}
-                    onClick={() => removeFromCart(item)}
+                    onClick={() => {
+                      removeFromCart(item);
+                    }}
                   >
                     <img src={images.trash} alt="remove" />
                   </div>
@@ -66,6 +70,7 @@ const Cart = ({ cartItems, removeFromCart, reduceFromCart, addToCart }) => {
           ))
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
