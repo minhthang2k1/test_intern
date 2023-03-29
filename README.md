@@ -1,8 +1,7 @@
 # Installation Instructions
-
   + cd tên file để vào đúng thư mục bạn vừa tải về
-  + Cài đặt Node_module và các thư viện cần thiết
-      npm i 
+  + Cài đặt node_modules và các thư viện cần thiết bàng lệnh:
+      - npm i 
 
 In the project directory, you can run:
 
