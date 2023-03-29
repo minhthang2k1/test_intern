@@ -6,28 +6,23 @@ import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
 
-const Button = ({ onClick }) => {
+const Button = ({ onClick, cartItems }) => {
+  console.log(cartItems?.quantity);
   const [isChecked, setIsChecked] = useState(false);
-
+  console.log(cartItems);
   const handleButtonClick = () => {
     setIsChecked(true);
     onClick();
   };
 
   return (
-    <div
-      className={cx("button", {
-        "button-add": !isChecked,
-        "button-checked": isChecked,
-      })}
-      onClick={!isChecked ? handleButtonClick : undefined}
-    >
-      {isChecked ? (
+    <div onClick={!cartItems ? handleButtonClick : undefined}>
+      {cartItems ? (
         <div className={cx("checked")}>
           <img src={images.check} alt="check" />
         </div>
       ) : (
-        <p>ADD TO CART</p>
+        <p className={cx("button-add")}>ADD TO CART</p>
       )}
     </div>
   );

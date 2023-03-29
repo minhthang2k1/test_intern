@@ -8,7 +8,7 @@ import datas from "../../data/shoes.json";
 
 const cx = classNames.bind(styles);
 
-const Products = ({ addToCart }) => {
+const Products = ({ addToCart, cartItems }) => {
   return (
     <div className={cx("product")}>
       <Logo />
@@ -26,7 +26,10 @@ const Products = ({ addToCart }) => {
             <div className={cx("item-description")}>{data.description}</div>
             <div className={cx("item-bottom")}>
               <div className={cx("item-price")}>${data.price}</div>
-              <Button onClick={() => addToCart(data)} />
+              <Button
+                onClick={() => addToCart(data)}
+                cartItems={cartItems.find((item) => item.id === data.id)}
+              />
             </div>
           </div>
         ))}

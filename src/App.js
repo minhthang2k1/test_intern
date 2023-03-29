@@ -8,18 +8,47 @@ import styles from "./App.module.scss";
 const cx = classNames.bind(styles);
 
 const App = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    let localItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (localItems) {
+      return localItems;
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (item) => {
     const existItem = cartItems.find((x) => x.id === item.id);
     if (existItem) {
       setCartItems(
         cartItems.map((x) =>
-          x.id === item.id ? { ...existItem, qty: existItem.qty + 1 } : x
+          x.id === item.id
+            ? { ...existItem, quantity: existItem.quantity + 1 }
+            : x
         )
       );
     } else {
-      setCartItems([...cartItems, { ...item, qty: 1 }]);
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+    }
+  };
+
+  const reduceFromCart = (item) => {
+    const existItem = cartItems.find((x) => x.id === item.id);
+    if (existItem.quantity === 1) {
+      const newCartItems = cartItems.filter((x) => x.id !== item.id);
+      setCartItems(newCartItems.length ? newCartItems : []);
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id
+            ? { ...existItem, quantity: existItem.quantity - 1 }
+            : x
+        )
+      );
     }
   };
 
@@ -27,14 +56,15 @@ const App = () => {
     setCartItems(cartItems.filter((item) => item.id !== itemToRemove.id));
   };
 
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
   return (
     <div className={cx("content")}>
-      <Products addToCart={addToCart} />
-      <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+      <Products addToCart={addToCart} cartItems={cartItems} />
+      <Cart
+        cartItems={cartItems}
+        removeFromCart={removeFromCart}
+        addToCart={addToCart}
+        reduceFromCart={reduceFromCart}
+      />
     </div>
   );
 };

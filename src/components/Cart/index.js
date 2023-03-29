@@ -7,9 +7,9 @@ import images from "../../assets/images";
 
 const cx = classNames.bind(styles);
 
-const Cart = ({ cartItems, removeFromCart }) => {
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.qty,
+const Cart = ({ cartItems, removeFromCart, reduceFromCart, addToCart }) => {
+  const totalPrice = cartItems?.reduce(
+    (total, item) => total + item.price * item.quantity,
     0
   );
 
@@ -18,13 +18,13 @@ const Cart = ({ cartItems, removeFromCart }) => {
       <Logo />
       <div className={cx("title")}>
         Your cart
-        <span className={cx("price")}>${totalPrice.toFixed(2)}</span>
+        <span className={cx("price")}>${totalPrice?.toFixed(2)}</span>
       </div>
       <div className={cx("body")}>
-        {cartItems.length === 0 ? (
+        {cartItems?.length === 0 ? (
           <div>Your cart is empty.</div>
         ) : (
-          cartItems.map((item, index) => (
+          cartItems?.map((item, index) => (
             <div className={cx("item")} key={index}>
               <div className={cx("item-image")}>
                 <div
@@ -40,9 +40,19 @@ const Cart = ({ cartItems, removeFromCart }) => {
                 <div className={cx("item-price")}>${item.price}</div>
                 <div className={cx("item-actions")}>
                   <div className={cx("item-count")}>
-                    <div className={cx("btn-count")}>-</div>
-                    <div className={cx("number-count")}>{item.qty}</div>
-                    <div className={cx("btn-count")}>+</div>
+                    <div
+                      className={cx("btn-count")}
+                      onClick={() => reduceFromCart(item)}
+                    >
+                      -
+                    </div>
+                    <div className={cx("number-count")}>{item.quantity}</div>
+                    <div
+                      className={cx("btn-count")}
+                      onClick={() => addToCart(item)}
+                    >
+                      +
+                    </div>
                   </div>
                   <div
                     className={cx("btn-remove")}

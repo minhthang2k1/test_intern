@@ -33,3 +33,17 @@
     transform: translateX(-30%) skew(8deg, -4deg);
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .content {
+    height: auto;
+    flex-direction: column;
+    margin: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .content {
+    padding: 0 8px;
+  }
+}
